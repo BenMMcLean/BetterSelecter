@@ -2,6 +2,10 @@
 	var selId;
 	var currentSearch;
 	
+	function dsi(){
+		return "[data-selector-id=" + selId + "]";
+	}
+	
 	function guid() {
 		function s4() {
 			return Math.floor((1 + Math.random()) * 0x10000)
@@ -12,23 +16,24 @@
 	}
 	
 	function searchFilter(s){
-		return s.toLowerCase().indexOf(currentSearch.toLowerCase()) >= 0;
+		return s.name.toLowerCase().indexOf(currentSearch.toLowerCase()) >= 0;
 	}
 	
 	function addOps(ops){
-		$("[data-selector-id=" + selId + "] .betterselecter-content").empty();
+		$(dsi() + " .betterselecter-content").empty();
 		
 		for(var i = 0; i < ops.length; i++){
-			$("[data-selector-id=" + selId + "] .betterselecter-content").append("<div class='betterselecter-op' data-selector-value='"+ ops[i] +"'>"+ ops[i] +"</div>");
+			$(dsi() + " .betterselecter-content").append("<div class='betterselecter-op' data-selector-name='"+ ops[i].name +"' data-selector-value='"+ ops[i].value +"'>"+ ops[i].name +"</div>");
 		}
-		$("[data-selector-id=" + selId + "] .betterselecter-op").first().addClass("bs-selected");
+		$(dsi() + " .betterselecter-op").first().addClass("bs-selected");
 		
-		$("[data-selector-id=" + selId + "] .betterselecter-op").click(function(){
-			$("[data-selector-id=" + selId + "] .bs-selected").removeClass("bs-selected");
+		$(dsi() + " .betterselecter-op").click(function(){
+			$(dsi() + " .bs-selected").removeClass("bs-selected");
 			$(this).addClass("bs-selected");
-			$("[data-selector-id=" + selId + "] input").val($(this).attr("data-selector-value"));
+			$(dsi() + " [data-input]").val($(this).attr("data-selector-name"));
+			$(dsi() + " [data-val]").val($(this).attr("data-selector-value"));
 			
-			$("[data-selector-id=" + selId + "] .betterselecter-content").slideUp();
+			$(dsi() + " .betterselecter-content").slideUp();
 		});
 	}
 	
@@ -36,32 +41,41 @@
 		var ops = [];
 		
 		this.find("option").each(function(e){
-			ops.push($(this).html());
+			ops.push(new op($(this).html(), $(this).val()));
 		});
 		
 		selId = guid();
 		
-		this.replaceWith("<div class='betterselecter clearfix' data-selector-id='"+ selId +"'><input type='text' name='"+ this.attr("name") +"' value='"+ ops[0] +"'/><div class='betterselecter-content' style='display:none'></div><div class='betterselecter-footer clearfix'><div style='float:right'>Powered by <a href='//arctro.com'>Arctro</a></div></div></div></div>")
+		this.replaceWith("<div class='betterselecter clearfix' data-selector-id='"+ selId +"'><input data-input type='text' value='"+ ops[0].name +"'/><input data-val type='hidden' name='"+ this.attr("name") +"' value='"+ ops[0].value +"'/><div class='betterselecter-content' style='display:none'></div><div class='betterselecter-footer clearfix'><div style='float:right'>Powered by <a href='//arctro.com'>Arctro</a></div></div></div></div>")
 		
-		$("[data-selector-id=" + selId + "] input").click(function(){
+		$(dsi() + " [data-input]").click(function(){
 			addOps(ops);
 			$(this).select();
-			$("[data-selector-id=" + selId + "] .betterselecter-content").slideDown();		
+			$(dsi() + " .betterselecter-content").slideDown();		
 		});
 		
 		$(document).click(function(event) { 
-		    if(!$(event.target).closest("[data-selector-id=" + selId + "]").length) {
-		        if($("[data-selector-id=" + selId + "] .betterselecter-content").is(":visible")) {
-		            $("[data-selector-id=" + selId + "] .betterselecter-content").slideUp();
+		    if(!$(event.target).closest(dsi() + "").length) {
+		        if($(dsi() + " .betterselecter-content").is(":visible")) {
+		            $(dsi() + " .betterselecter-content").slideUp();
 		        }
 		    }        
 		});
 		
-		$("[data-selector-id=" + selId + "] input").on("change keyup paste", function(){
+		$(dsi() + " [data-input]").on("change keyup paste", function(){
 			currentSearch = $(this).val();
 			addOps(ops.filter(searchFilter));
 		})
 		
 		return this;
 	};
+	
+	function op(name, value){
+		if(typeof value === "undefined"){
+			this.value = name;
+		}else{
+			this.value = value;
+		}
+		this.name = name;
+	}
 })(jQuery);
