@@ -1,14 +1,29 @@
-.betterselecter a{
+body{
+	font-family:arial, sans-serif;
+}
+
+a{
 	color:inherit;
 	text-decoration:none;
 }
 
-.betterselecter{
+.betterselecter, .betterselecter-sel{
 	width:500px;
 	font-family: Arial, sans-serif;
 	
 	background-color:#F2F2F2;
 	border:1px #D8D8D8 solid;
+}
+
+
+.betterselecter{
+	position:absolute;
+}
+.betterselecter-sel{
+	width: calc(500px - 16px);'
+	border:none;
+	padding:8px;
+	font-size:120%;
 }
 
 .betterselecter > input {
