@@ -1,0 +1,55 @@
+a{
+	color:inherit;
+	text-decoration:none;
+}
+
+.betterselecter{
+	width:500px;
+	font-family: Arial, sans-serif;
+	
+	background-color:#F2F2F2;
+	border:1px #D8D8D8 solid;
+}
+
+.betterselecter > input {
+	width:100%;
+	border:none;
+	padding:8px;
+	font-size:120%;
+	
+	/*background-image:url("down-chevron.png");*/
+	background-position:right;
+	background-size:contain;
+	background-repeat:no-repeat;
+}
+
+.betterselecter .betterselecter-content{
+	padding:8px 0px;
+	max-height:500px;
+	overflow-y:auto;
+}
+
+.betterselecter .betterselecter-op{
+	padding:4px 8px;
+}
+.betterselecter .betterselecter-op:hover, .betterselecter .bs-selected{
+	background-color:#E0ECF8;
+}
+
+.betterselecter .betterselecter-footer{
+	padding:4px 8px;
+	font-size:80%;
+	color:#6E6E6E;
+}
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.clearfix {display: inline-block;}
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
