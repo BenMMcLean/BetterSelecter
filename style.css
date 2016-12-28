@@ -26,16 +26,23 @@ a{
 	font-size:120%;
 }
 
+.betterselcter-ch{
+	background-image:url("chevron.png");
+	background-repeat:no-repeat;
+	background-size:contain;
+	background-position:center center;
+	
+	margin-right:8px;
+	width:22px;
+	height:22px;
+	float:right;
+}
+
 .betterselecter > input {
 	width:100%;
 	border:none;
 	padding:8px;
 	font-size:120%;
-	
-	/*background-image:url("down-chevron.png");*/
-	background-position:right;
-	background-size:contain;
-	background-repeat:no-repeat;
 }
 
 .betterselecter .betterselecter-content{

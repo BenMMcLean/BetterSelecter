@@ -26,7 +26,7 @@
 		
 		searchParent.find(".betterselecter-op").click(function(){
 			searchParent.find(".betterselecter-value").val($(this).attr("data-selector-value"));
-			selectParent.html($(this).attr("data-selector-name"));
+			selectParent.find(".bss-c").html($(this).attr("data-selector-name"));
 			searchParent.hide();
 		});
 	}
@@ -40,7 +40,7 @@
 		
 		var selId = guid();
 		
-		this.replaceWith("<div class='betterselecter-sel' data-selid-i='"+ selId +"'>"+ ops[0].name +"</div><div class='betterselecter clearfix' data-selid-s='"+ selId +"' style='display:none'><input data-input type='text'/><input class='betterselecter-value' type='hidden' name='"+ this.attr("name") +"' value='"+ ops[0].value +"'/><div class='betterselecter-content'></div><div class='betterselecter-footer clearfix'><div style='float:right'>Powered by <a href='//arctro.com'>Arctro</a></div></div></div></div>")
+		this.replaceWith("<div class='betterselecter-sel' data-selid-i='"+ selId +"'><div class='betterselcter-ch'></div><span class='bss-c'>"+ ops[0].name +"<span></div><div class='betterselecter clearfix' data-selid-s='"+ selId +"' style='display:none'><input data-input type='text'/><input class='betterselecter-value' type='hidden' name='"+ this.attr("name") +"' value='"+ ops[0].value +"'/><div class='betterselecter-content'></div><div class='betterselecter-footer clearfix'><div style='float:right'>Powered by <a href='//arctro.com'>Arctro</a></div></div></div></div>")
 		
 		searchParent = $("[data-selid-s="+ selId +"]");
 		selectParent = $("[data-selid-i="+ selId +"]");
