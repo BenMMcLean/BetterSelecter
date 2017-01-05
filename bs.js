@@ -46,21 +46,22 @@
 		selectParent = $("[data-selid-i="+ selId +"]");
 		addOps(ops);
 		
-
-		
-		selectParent.click(function(){
+		selectParent.click(function(e){
 			searchParent.css("top", selectParent.position().top + "px").show();
 			addOps(ops);
 			searchParent.find("[data-input]").focus().val("");
+			
+			e.stopPropagation();
+		});
+		
+		searchParent.click(function(e){
+			e.stopPropagation;
 		});
 		
 		$(document).click(function(event) { 
-		    if(!$(event.target).closest(searchParent.selector).length && !$(event.target).closest(selectParent.selector).length) {
-		        if(searchParent.is(":visible")) {
-		        	searchParent.hide();
-		        }
-		    }        
+		    searchParent.hide();       
 		});
+		
 		
 		searchParent.find("[data-input]").on("change keyup paste", function(){
 			currentSearch = $(this).val();
