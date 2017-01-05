@@ -1,12 +1,3 @@
-body{
-	font-family:arial, sans-serif;
-}
-
-a{
-	color:inherit;
-	text-decoration:none;
-}
-
 .betterselecter, .betterselecter-sel{
 	width:500px;
 	font-family: Arial, sans-serif;
@@ -18,6 +9,10 @@ a{
 
 .betterselecter{
 	position:absolute;
+}
+.betterselecter a, .betterselecter-sel a, .betterselecter-ch a{
+	color:inherit;
+	text-decoration:none;
 }
 .betterselecter-sel{
 	width: calc(500px - 16px);'
