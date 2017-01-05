@@ -38,6 +38,8 @@
 	border:none;
 	padding:8px;
 	font-size:120%;
+	
+	box-sizing: border-box;
 }
 
 .betterselecter .betterselecter-content{
