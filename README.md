@@ -30,3 +30,5 @@ BetterSelecter allows you to easily implement a clean, easy to use, and searchab
  $("selector").betterSelect();
 
  ```
+
+This repository is not actively developed, but new PRs will be reviewed and merged. The library still works
